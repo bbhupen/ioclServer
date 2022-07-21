@@ -1,7 +1,7 @@
 const mongoose = require('mongoose')
 
 const subSchema = new mongoose.Schema({
-    subcription: {
+    subscription: {
         type: Object,
         required: true
     }
