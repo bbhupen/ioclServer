@@ -11,11 +11,6 @@ const app = express()
 
 app.use(express.static(path.join(__dirname, "public")))
 
-app.use(function (req, res, next) {
-  res.setHeader('Access-Control-Allow-Origin', 'https://ioclpushclient.herokuapp.com/');
-  next();
-});
-
 app.use(cors())
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({extended:false}))
@@ -26,7 +21,7 @@ const PORT = process.env.PORT || 5000
 const username = process.env.UNAME
 const password = process.env.PASSWORD
 
-console.log(username)
+app.use(cors({origin: 'https://ioclpushclient.herokuapp.com/'}));
 
 webPush.setVapidDetails('mailto:test@test.com', publicVapidKey, privateVapidKey)
 
