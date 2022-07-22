@@ -63,11 +63,12 @@ app.post("/subscribe", async (req,res) => {
 
 
 app.post('/sendNotification', async(req,res)=> {
-  const {title, body} = req.body
+  const {title, body, url} = req.body
 
   const payload = JSON.stringify({
     title: title, 
-    body: body
+    body: body,
+    url: url
   })
 
   console.log(payload)
