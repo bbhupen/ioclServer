@@ -10,6 +10,12 @@ const app = express()
 
 
 app.use(express.static(path.join(__dirname, "public")))
+
+app.use(function (req, res, next) {
+  res.setHeader('Access-Control-Allow-Origin', 'https://ioclpushclient.herokuapp.com/');
+  next();
+});
+
 app.use(cors())
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({extended:false}))
@@ -63,12 +69,11 @@ app.post("/subscribe", async (req,res) => {
 
 
 app.post('/sendNotification', async(req,res)=> {
-  const {title, body, url} = req.body
+  const {title, body} = req.body
 
   const payload = JSON.stringify({
     title: title, 
     body: body,
-    url: url
   })
 
   console.log(payload)
